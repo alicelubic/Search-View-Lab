@@ -41,6 +41,15 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
                     COL_ITEM_TYPE + " TEXT )";
 
 
+    private static ShoppingSQLiteOpenHelper instance;
+
+    public static ShoppingSQLiteOpenHelper getInstance(Context context){
+        if(instance==null){
+            instance = new ShoppingSQLiteOpenHelper(context);
+        }
+        return instance;
+    }
+
     public ShoppingSQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -54,6 +63,23 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + SHOPPING_LIST_TABLE_NAME);
         this.onCreate(db);
+    }
+
+    //search method
+    public Cursor searchShoppingList(String query){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(SHOPPING_LIST_TABLE_NAME,
+                SHOPPING_COLUMNS,
+                COL_ITEM_NAME+" LIKE ?",
+                new String[]{query+"%"},
+                null,null,null);
+        return cursor;
+    }
+
+    //retrieve whole list method
+    public Cursor getShoppingList(){
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(SHOPPING_LIST_TABLE_NAME,null,null,null,null,null,null);
     }
 
 
