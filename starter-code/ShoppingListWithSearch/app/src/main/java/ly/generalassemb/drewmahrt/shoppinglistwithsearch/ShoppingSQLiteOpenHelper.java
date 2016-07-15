@@ -71,7 +71,7 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         Cursor cursor = db.query(SHOPPING_LIST_TABLE_NAME,
                 SHOPPING_COLUMNS,
                 COL_ITEM_NAME+" LIKE ?",
-                new String[]{query+"%"},
+                new String[]{"%"+query+"%"},
                 null,null,null);
         return cursor;
     }

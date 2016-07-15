@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         //display list of groceries before searching
         ListView listView = (ListView) findViewById(R.id.listview_main);
         Cursor cursor = ShoppingSQLiteOpenHelper.getInstance(MainActivity.this).getShoppingList();
+
+
+
         CursorAdapter adapter = new CursorAdapter(MainActivity.this,cursor, android.support.v4.widget.CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {

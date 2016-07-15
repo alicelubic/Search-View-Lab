@@ -21,9 +21,9 @@ public class SearchResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
-        mListViewMain = (ListView) findViewById(R.id.listview_main); //this is where the full list should display before you search
+      //  mListViewMain = (ListView) findViewById(R.id.listview_main); //this is where the full list should display before you search
         mListView = (ListView) findViewById(R.id.listview_results);
-        mListView.setEmptyView(findViewById(R.id.no_results_text));
+      //  mListView.setEmptyView(findViewById(R.id.no_results_text));
 
         if(Intent.ACTION_SEARCH.equals(getIntent().getAction())){
 
